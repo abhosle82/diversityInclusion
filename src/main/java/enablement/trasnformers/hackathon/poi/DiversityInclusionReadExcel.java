@@ -108,7 +108,7 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
                 }
 
                 System.out.println("#################### DONE ##########################");
-                if(i==3){
+                if(i==5){
                     break;
                 }
             }
