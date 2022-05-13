@@ -19,7 +19,9 @@ public class CompanyDiversityInfo {
     private String state;
     private String zipCode;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "company_id")
     private Set<LeaderDiversityInfo> leaders;
 
     public CompanyDiversityInfo() {

@@ -26,6 +26,11 @@ public class DiversityInclusionServiceImpl implements DiversityInclusionService{
     }
 
     @Override
+    public List<CompanyDiversityInfo> findAllCompanies() {
+        return companyRepository.findAll();
+    }
+
+    @Override
     public void saveLeaderDiversityInfo(List<LeaderDiversityInfo> lsLeaderDI) {
         leaderRepository.saveAll(lsLeaderDI);
     }

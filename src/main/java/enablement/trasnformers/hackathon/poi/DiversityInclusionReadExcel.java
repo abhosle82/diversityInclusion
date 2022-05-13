@@ -97,8 +97,8 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
                     }else if(iColumnIndex == 10) {
 
                     }else if(iColumnIndex == 11){
-                        objLDI1.setCompany(objCDI);
-                        objLDI2.setCompany(objCDI);
+                        //objLDI1.setCompany(objCDI);
+                        //objLDI2.setCompany(objCDI);
                         objCDI.setLeaders(setOfLeaders);
 
                         lsCDI.add(objCDI);

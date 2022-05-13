@@ -24,16 +24,13 @@ public class LeaderDiversityInfo {
     private String isDisable;
     @Column(name="SHARE_PERCENT")
     private long sharePercentage;
-    @ManyToOne
-    @JoinColumn(name="company_id")
-    private CompanyDiversityInfo company;
 
 
     public LeaderDiversityInfo() {
     }
 
 
-    public LeaderDiversityInfo(Integer id, String name, String gender, String ethnicity, String isLgbt, String isVeteran, String isDisable, long sharePercentage, CompanyDiversityInfo company) {
+    public LeaderDiversityInfo(Integer id, String name, String gender, String ethnicity, String isLgbt, String isVeteran, String isDisable, long sharePercentage) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -42,7 +39,6 @@ public class LeaderDiversityInfo {
         this.isVeteran = isVeteran;
         this.isDisable = isDisable;
         this.sharePercentage = sharePercentage;
-        this.company = company;
     }
 
     public Integer getId() {
@@ -109,26 +105,7 @@ public class LeaderDiversityInfo {
         this.sharePercentage = sharePercentage;
     }
 
-    public CompanyDiversityInfo getCompany() {
-        return company;
-    }
 
-    public void setCompany(CompanyDiversityInfo company) {
-        this.company = company;
-    }
 
-    @Override
-    public String toString() {
-        return "LeaderDiversityInfo{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", gender='" + gender + '\'' +
-                ", ethnicity='" + ethnicity + '\'' +
-                ", isLgbt='" + isLgbt + '\'' +
-                ", isVeteran='" + isVeteran + '\'' +
-                ", isDisable='" + isDisable + '\'' +
-                ", sharePercentage=" + sharePercentage +
-                ", company=" + company +
-                '}';
-    }
+
 }
