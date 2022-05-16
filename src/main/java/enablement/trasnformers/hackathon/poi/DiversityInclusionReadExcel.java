@@ -8,6 +8,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.NumberToTextConverter;
+import org.apache.poi.util.IOUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,8 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
 
         try
         {
-            FileInputStream file = new FileInputStream(new File("Hackathon_Data_MinorityWomenOwned_2022 v1.xlsx"));
+            IOUtils.setByteArrayMaxOverride(147379697);
+            FileInputStream file = new FileInputStream(new File("Hackathon_Data_MinorityWomenOwned_2022 v2.xlsx"));
 
 
             //Create Workbook instance holding reference to .xlsx file
@@ -49,6 +51,7 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
 
             while (rowIterator.hasNext())
             {
+                System.out.println("outside loop");
                 objCDI = new CompanyDiversityInfo();
                 objLDI1 = new LeaderDiversityInfo();
                 objLDI2 = new LeaderDiversityInfo();
@@ -66,6 +69,8 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
 
                     Cell cell = cellIterator.next();
                     iColumnIndex =cell.getColumnIndex();
+
+                    System.out.println("Inside loop "+iColumnIndex);
 
                     if(cell.getCellType() == CellType.NUMERIC){
                         strValue = NumberToTextConverter.toText(cell.getNumericCellValue()) ;
@@ -88,19 +93,37 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
                         objCDI.setZipCode(strValue);
                     }else if(iColumnIndex == 7){
                         objCDI.setPhone(strValue);
-                    }else if(iColumnIndex == 8){
+                    }else if(iColumnIndex == 8){    // Business Contact 1
                         objLDI1.setName(strValue);
+                    }else if(iColumnIndex == 9){    // Business Contact 1 - Gender
+                        objLDI1.setGender(strValue);
+                    }else if(iColumnIndex == 10){   // Business Contact 1 - Ethnicity
+                        objLDI1.setEthnicity(strValue);
+                    }else if(iColumnIndex == 11){   // Business Contact 1 - LGBT
+                        objLDI1.setIsLgbt(strValue);
+                    }else if(iColumnIndex == 12){   // Business Contact 1 - Veteran
+                        objLDI1.setIsVeteran(strValue);
+                    }else if(iColumnIndex == 13){   // Business Contact 1 - Disabled
+                        objLDI1.setIsDisable(strValue);
+                    }else if(iColumnIndex == 14){   // Business Contact 1 - Share %
+                        //objLDI1.setSharePercentage(Long.parseLong(strValue)); // Commenting as we do not have values for share %
                         setOfLeaders.add(objLDI1);
-                    }else if(iColumnIndex == 9){
+                    }else if(iColumnIndex == 15){   // Business Contact 2
                         objLDI2.setName(strValue);
+                    }else if(iColumnIndex == 16){   // Business Contact 2 - Gender
+                        objLDI2.setGender(strValue);
+                    }else if(iColumnIndex == 17){   // Business Contact 2 - Ethnicity
+                        objLDI2.setEthnicity(strValue);
+                    }else if(iColumnIndex == 18) {  // LGBT
+                        objLDI2.setIsLgbt(strValue);
+                    }else if(iColumnIndex == 19) {  // Veteran
+                        objLDI2.setIsVeteran(strValue);
+                    }else if(iColumnIndex == 20) {  // Disabled
+                        objLDI2.setIsDisable(strValue);
+                    }else if(iColumnIndex == 21){   // Share Percentage
+                        //objLDI2.setSharePercentage(Long.parseLong(strValue)); // Commenting as we do not have values for share %
                         setOfLeaders.add(objLDI2);
-                    }else if(iColumnIndex == 10) {
-
-                    }else if(iColumnIndex == 11){
-                        //objLDI1.setCompany(objCDI);
-                        //objLDI2.setCompany(objCDI);
                         objCDI.setLeaders(setOfLeaders);
-
                         lsCDI.add(objCDI);
                         lsLDI.add(objLDI1);
                         lsLDI.add(objLDI2);
@@ -108,7 +131,7 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
                 }
 
                 System.out.println("#################### DONE ##########################");
-                if(i==5){
+                if(i==3){
                     break;
                 }
             }

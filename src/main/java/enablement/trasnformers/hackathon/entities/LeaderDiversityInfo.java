@@ -106,6 +106,17 @@ public class LeaderDiversityInfo {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "LeaderDiversityInfo{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", ethnicity='" + ethnicity + '\'' +
+                ", isLgbt='" + isLgbt + '\'' +
+                ", isVeteran='" + isVeteran + '\'' +
+                ", isDisable='" + isDisable + '\'' +
+                ", sharePercentage=" + sharePercentage +
+                '}';
+    }
 }
