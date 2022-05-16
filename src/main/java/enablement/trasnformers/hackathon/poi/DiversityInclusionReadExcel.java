@@ -70,7 +70,6 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
                     Cell cell = cellIterator.next();
                     iColumnIndex =cell.getColumnIndex();
 
-                    System.out.println("Inside loop "+iColumnIndex);
 
                     if(cell.getCellType() == CellType.NUMERIC){
                         strValue = NumberToTextConverter.toText(cell.getNumericCellValue()) ;
@@ -129,8 +128,6 @@ public class DiversityInclusionReadExcel implements DiversityInclusion{
                         lsLDI.add(objLDI2);
                     }
                 }
-
-                System.out.println("#################### DONE ##########################");
                 if(i==3){
                     break;
                 }
